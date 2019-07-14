@@ -71,7 +71,7 @@
         </van-cell>
 
       </div>
-
+      <GoodsList   @click="goGoods(item)" v-for="(item, i) in homeData.recomentList" :key="i"  :msg="item"/>
       <div class="goods-list">
         <van-card v-for="(item, i) in homeData.recomentList" :key="i"
           num="2"
@@ -103,6 +103,7 @@
 // @ is an alias to /src
 import HelloWorld from "@/components/HelloWorld.vue";
 import Swipelist from "@/components/Swipelist.vue";
+import GoodsList from "@/components/Goodslistbig"
 import { Search, Swipe, SwipeItem, Lazyload ,NoticeBar,Toast } from 'vant';
 import { gethomeinfo } from '../api/api'
 export default {
@@ -311,7 +312,7 @@ export default {
     this.$parent.footshow = true
   },
   components: {
-    HelloWorld,Swipelist
+    HelloWorld,Swipelist,GoodsList
   },
 };
 </script>
