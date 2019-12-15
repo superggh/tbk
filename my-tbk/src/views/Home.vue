@@ -2,22 +2,24 @@
   <div class="home">
     <div class="home-top">
           <van-search placeholder="请输入搜索关键词" shape="round" v-model="searchValue"  show-action >
-         <div slot="action" @click="onSearch">搜索</div>
+         <div slot="action" @click="onSearch"><div class="message-box"><label><van-icon name="chat-o" size="20" :info="messageNumber" /></label><label>消息</label></div></div>
        </van-search>
     </div>
 
 
    <div class="home-body">
-      <div class="tabs" @click="goList()"> 
-        <van-tabs v-model="active" sticky >
+      <div class="tab-box" > 
+        <van-tabs style="width:88%" v-model="active" sticky @click="goList()">
         <van-tab  v-for="(item,i) in homeData.top" :key="i" :title="item.name" ></van-tab>
 
       </van-tabs>
+      <van-icon size="20" name="wap-nav" />
       </div>
+
       <div class = "swipe-box">
-  		<van-swipe :autoplay="3000">
-  		  <van-swipe-item v-for="(image, index) in homeData.banner" :key="index" @click="gourl(image.path)">
-  		    <img v-lazy="image.imgUrl" />
+  		<van-swipe :autoplay="3000" >
+  		  <van-swipe-item  v-for="(image, index) in homeData.banner" :key="index" @click="gourl(image.path)">
+  		    <img style="border-radius: 5px;" v-lazy="image.imgUrl" />
   		  </van-swipe-item>
   		</van-swipe>
       </div>
@@ -35,11 +37,14 @@
         <img :src="homeData.banner1" >
       </div>
 
-      <van-notice-bar @click="gotest()"
-        :text=homeData.noticeText
-        left-icon="volume-o"
-      />
-
+      <div class="notice-box">
+        <img style="width:15%;height:20%;" src="https://img.alicdn.com/imgextra/i3/2053469401/O1CN011wdOkj2JJhy7TkPFo_!!2053469401.png" />
+         <div style="width:80%"> <van-notice-bar style="    height: 20px;" @click="gotest()"
+            :text=homeData.noticeText
+            left-icon="volume-o"
+          />
+          </div>
+      </div>
       <div class="hot" >   
         <van-cell  style="font-size:14px;font-weight: 600" title="大家都在领"   value="内容"  >
           <template slot="icon" >
@@ -110,6 +115,7 @@ export default {
   name: "home",
   data() {
     return {
+      messageNumber:0,
       homeData:{
        
       },
@@ -387,5 +393,21 @@ export default {
   .banner1
     img
       width:100%
-
+.message-box
+  display: flex;
+  line-height: 14px;
+  font-size: 12px;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-around;
+.tab-box
+  display:flex;
+  width:100%;
+  align-items: center;
+  justify-content: space-around;
+.notice-box
+  display:flex;
+  align-items: center;
+  padding:10px;
+  
 </style>
